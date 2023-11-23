@@ -2,6 +2,7 @@
   let image = null,
     filename;
   let showImage = false;
+  let isLoading = false;
   let result;
   function setImage(e) {
     if (e.target) {
@@ -15,6 +16,7 @@
   async function predict() {
     let data = new FormData();
     data.append("file", filename);
+    isLoading = true;
     const res = await fetch(
       "https://vitiligo-detector-7x6qvvfqha-el.a.run.app/predict",
       {
@@ -25,6 +27,7 @@
     const json = await res.json();
     result = json.result;
     modal.showModal();
+    isLoading = false;
   }
   function reset() {
     showImage = false;
@@ -37,16 +40,14 @@
     <header>
       {#if result >= 0.5}
         Warning
-      {/if}
-      {#if result < 0.5}
+      {:else if result < 0.5}
         Safe
       {/if}
     </header>
     {#if result >= 0.5}
       Our model detects vitiligo, please consider getting it checked by a
       medical professional
-    {/if}
-    {#if result < 0.5}
+    {:else if result < 0.5}
       Our model detects normal, healthy skin
     {/if}
     <footer><button on:click={() => modal.close()}>Close</button></footer>
@@ -55,11 +56,16 @@
 
 <article>
   <header>Upload your image to get started!</header>
-  <input type="file" name="file" id="file" on:change={setImage} />
+  <input type="file" name="file" id="upload" on:change={setImage} />
   {#if showImage}
     <img alt="uploaded photo" bind:this={image} />
     <footer>
-      <a href="#" role="button" on:click={() => predict()}>
+      <a
+        href="#"
+        role="button"
+        aria-busy={isLoading}
+        on:click={() => predict()}
+      >
         Check this image
       </a>
       <a href="#" role="button" class="secondary" on:click={() => reset()}>

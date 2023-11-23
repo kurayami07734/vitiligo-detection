@@ -20,6 +20,8 @@
         role="button"
         class="secondary"
         on:click={() => toggleTheme()}
+        data-tooltip="Toggle theme"
+        data-placement="left"
       >
         {#if isDark}
           <Icon icon="ri:sun-fill" height="1.5rem" />
