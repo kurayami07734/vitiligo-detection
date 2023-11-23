@@ -1,4 +1,4 @@
-<div class="container hero">
+<div class="container hero" data-theme="dark">
   <h1><i>Easily Check for Vitiligo with Our AI-Powered Tool.</i></h1>
   <a href="#upload" role="button">Try it now !</a>
 </div>

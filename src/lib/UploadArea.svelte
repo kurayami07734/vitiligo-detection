@@ -9,7 +9,9 @@
       filename = e.target.files[0];
       let reader = new FileReader();
       reader.readAsDataURL(filename);
-      reader.onload = (e) => (image.src = e.target.result);
+      reader.onload = (e) => {
+        image.src = e.target.result;
+      };
       showImage = true;
     }
   }
@@ -56,7 +58,13 @@
 
 <article>
   <header>Upload your image to get started!</header>
-  <input type="file" name="file" id="upload" on:change={setImage} />
+  <input
+    type="file"
+    name="file"
+    id="upload"
+    accept="image/jpeg, image/png"
+    on:change={setImage}
+  />
   {#if showImage}
     <img alt="uploaded photo" bind:this={image} />
     <footer>
