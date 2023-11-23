@@ -68,3 +68,9 @@
     </footer>
   {/if}
 </article>
+
+<style>
+  img {
+    max-width: min(250px, 60vw);
+  }
+</style>
