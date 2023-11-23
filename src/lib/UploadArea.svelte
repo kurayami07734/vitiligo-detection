@@ -34,6 +34,7 @@
   function reset() {
     showImage = false;
     image = null;
+    isLoading = false;
   }
 </script>
 
