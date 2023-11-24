@@ -73,7 +73,7 @@
         href="#"
         role="button"
         aria-busy={isLoading}
-        on:click={() => predict()}
+        on:click|preventDefault={() => predict()}
       >
         Check this image
       </a>
