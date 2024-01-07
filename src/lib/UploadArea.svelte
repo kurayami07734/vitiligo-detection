@@ -20,7 +20,7 @@
     data.append("file", filename);
     isLoading = true;
     const res = await fetch(
-      "https://vitiligo-detector-7x6qvvfqha-el.a.run.app/predict",
+      "https://vitiligo-detector-api.onrender.com/predict",
       {
         method: "POST",
         body: data,
@@ -59,6 +59,9 @@
 
 <article>
   <header>Upload your image to get started!</header>
+  <h3>Disclaimer: This model was created for educational purposes and is not a replacement of medical advice.</h3>
+  <h2>For best results, crop the image to include only the region of interest</h2>
+  <p>The model has been moved to free tier of render.com, hence it may take longer to return a result</p>
   <input
     type="file"
     name="file"
